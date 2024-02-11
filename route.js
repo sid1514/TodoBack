@@ -99,5 +99,14 @@ route.get("/getMaxTaskId", async (req, res) => {
     }
   })
 
-  
+  route.delete('/deleteAll', async (req, res) => {
+    try {
+      // Delete all documents in the collection
+      await Todo.deleteMany({});
+      res.send('All documents deleted successfully');
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Error deleting documents');
+    }
+  });
 module.exports=route;
